@@ -22,17 +22,28 @@ steps:
   persistCredentials: true
 
 - task: UseDotNet@2
+  displayName: 'Selecting SDK'
   inputs:
     packageType: 'sdk'
     version: '6.0.x'
 
 - task: DotNetCoreCLI@2
+  displayName: 'Restoring'
   inputs:
     command: 'restore'
     feedsToUse: 'select'
 
 - task: DotNetCoreCLI@2
+  displayName: 'Building'
   inputs:
     command: 'publish'
+    configuration: 'release'
     publishWebProjects: true
     zipAfterPublish: false
+
+- task: PublishBuildArtifacts@1
+  displayName: 'Artefato'
+  inputs:
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    ArtifactName: 'PocAzureArtefato'
+    publishLocation: 'Container'
