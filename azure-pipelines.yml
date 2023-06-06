@@ -44,6 +44,6 @@ steps:
 - task: PublishBuildArtifacts@1
   displayName: 'Artefato'
   inputs:
-    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    PathtoPublish: 'C:\azure-agente\_work\20\s\bin\Debug\net6.0\publish\'
     ArtifactName: 'PocAzureArtefato'
     publishLocation: 'Container'
